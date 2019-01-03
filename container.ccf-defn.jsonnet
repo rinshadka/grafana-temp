@@ -1,7 +1,7 @@
 local common = import "common.ccf-conf.jsonnet";
 local context = import "context.ccf-facts.json";
 local dockerFacts = import "eth0-interface-localhost.ccf-facts.json";
-local traefikConf = import "traefikEventNav.ccf-conf.jsonnet";
+local traefikConf = import "traefik.ccf-conf.jsonnet";
 local containerSecrets = import "grafana.secrets.ccf-conf.jsonnet";
 
 local webServicePort = 3001;
@@ -32,10 +32,10 @@ local webServicePortInContainer = 3000;
                 labels: {
                         'traefik.enable': 'true',
                         'traefik.docker.network': common.defaultDockerNetworkName,
-                        'traefik.domain': traefikConf.angularAppFQDN,
+                        'traefik.domain': traefikConf.applianceFQDN,
                         'traefik.backend': context.containerName,
                         'traefik.frontend.entryPoints': 'http',
-                        'traefik.frontend.rule': 'Host:' + context.containerName + '.' + traefikConf.angularAppFQDN,
+                        'traefik.frontend.rule': 'Host:' + context.containerName + '.' + traefikConf.applianceFQDN,
                 }
 			},
 		},
