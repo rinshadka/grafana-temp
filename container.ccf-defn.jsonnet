@@ -34,7 +34,7 @@ local webServicePortInContainer = 3000;
                         'traefik.docker.network': common.defaultDockerNetworkName,
                         'traefik.domain': traefikConf.applianceFQDN,
                         'traefik.backend': context.containerName,
-                        'traefik.frontend.entryPoints': 'http',
+                        'traefik.frontend.entryPoints': 'http,https',
                         'traefik.frontend.rule': 'Host:' + context.containerName + '.' + traefikConf.applianceFQDN,
                 }
 			},
